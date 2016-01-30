@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .login
+    h2= message
+    form(action="login" name="login", method="post")
+        div.span.label Bitte gebe deinen Schlüssel ein
+        div
+          input(type="text", name="key")
+        div.actions
+            input(type="submit", value="Anmelden", autocomplete="off")

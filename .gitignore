@@ -1,0 +1,4 @@
+node_modules
+public/javascripts/build/.module-cache/
+sessions/
+public/images/user
