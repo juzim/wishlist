@@ -16,7 +16,7 @@ In WISHLIST groups (families, friends, co-workers etc) can collect wishes for th
 
 ## Adding users
 Users have to be added manually for now. The schema is:
-```JSON
+```
 {
   "name": "NAME", <- the users name
   "key": "UNIQUE KEY", <- a unique key which acts as the password so make it long (what could go wrong)
