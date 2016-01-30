@@ -11,21 +11,21 @@ In WISHLIST groups (families, friends, co-workers etc) can collect wishes for th
 2. Add the path to your mongodb file to config.js
 3. Install node and the dependencies with npm install
 4. Build the project with [gulp](http://gulpjs.com/)
-5. Run bin/www (you might want to use forever for this)
+5. Run bin/www (you might want to use [forever](https://github.com/foreverjs/forever) for this)
 6. You can access the wishlist on your-ip:3000
 
-## Adding user
+## Adding users
 Users have to be added manually for now. The schema is:
-'''
+```JSON
 {
-    "name": "NAME", <- the users name
-    "key": "UNIQUE KEY", <- a unique key which acts as the password so make it long (what could go wrong)
-    "email": "guess_what@email.computer",
-    "isAdmin": TRUE OR FALSE, <- admins can edit and delete all wishes
-    "group": ANY NUMBER, <- each user can only belong to one group and can't see wishes or users from other groups
-    "imageUrl": "USERNAME.jpg", <- put a file with the same name in public/images/user
+  "name": "NAME", <- the users name
+  "key": "UNIQUE KEY", <- a unique key which acts as the password so make it long (what could go wrong)
+  "email": "guess_what@email.computer",
+  "isAdmin": TRUE OR FALSE, <- admins can edit and delete all wishes
+  "group": ANY NUMBER, <- each user can only belong to one group and can't see wishes or users from other groups
+  "imageUrl": "USERNAME.jpg", <- put a file with the same name in public/images/user
 }
-'''
+```
 Note: admins still cannot see wishes for themselves that were added by another user.
 
 ## Todo:
