@@ -29,7 +29,7 @@ Users have to be added manually for now. The schema is:
 Note: admins still cannot see wishes for themselves that were added by another user.
 
 ## Todo:
-- write better readme
+- write better readme, add screenshots
 - so much clean-up
 - mobile-friendly layout
 - better security (atm only a pass-phrase is used and no brute-force detection is implemented)
