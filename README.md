@@ -26,6 +26,9 @@ Users have to be added manually for now. The schema is:
   "imageUrl": "USERNAME.jpg", <- put a file with the same name in public/images/user
 }
 ```
+=======
+
+>>>>>>> 1129a4d14480a6c9ef815692a009dba541180b3e
 Note: admins still cannot see wishes for themselves that were added by another user.
 
 ## Todo:
