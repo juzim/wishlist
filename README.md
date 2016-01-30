@@ -16,6 +16,7 @@ In WISHLIST groups (families, friends, co-workers etc) can collect wishes for th
 
 ## Adding users
 Users have to be added manually for now. The schema is:
+<<<<<<< HEAD
 ```
 {
   "name": "NAME", <- the users name
