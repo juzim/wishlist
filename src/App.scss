@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -11,6 +11,15 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+	color: #00B7FF;
+}
+
+
+.title {
+  font-size: 28px;
 }
 
 .login {
@@ -50,7 +59,7 @@ a {
 	  background-color: #fff;
 	  opacity: 0.5;
 	  pointer-events: none;
-	  background-image: url('../images/loading.gif');
+	  // background-image: url('../images/loading.gif');
 	  background-repeat: no-repeat;
 	  background-position: center center;
 	}

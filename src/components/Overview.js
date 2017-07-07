@@ -35,16 +35,32 @@ class Overview extends React.Component {
     window.history.pushState({}, document.title, url.split("?")[0]);
 
     let that = this;
+    that.setState({
+    //           user: {name: 'Foo'},
+    // //           // allUsers: data.allUsers,
+    // //           // allWishes: data.wishes,
+    // //           // filteredWishes: data.wishes,
+    // //           // ownWishes: data.ownWishes
+    // //         });
+      })
 
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('http://localhost:3001/api/lists', {
+      method: 'GET',
+      mode: 'cors',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      },
+    })
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson);
+
             that.setState({
-              user: responseJson[0],
-              // allUsers: data.allUsers,
-              // allWishes: data.wishes,
-              // filteredWishes: data.wishes,
-              // ownWishes: data.ownWishes
+              user: responseJson.user,
+              allUsers: responseJson.allUsers,
+              allWishes: responseJson.wishes,
+              filteredWishes: responseJson.wishes,
+              ownWishes: responseJson.ownWishes
             });
       })
       .catch((error) => {
