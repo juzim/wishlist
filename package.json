@@ -44,13 +44,14 @@
     "react-toastr": "^2.8.2",
     "react-tooltip": "^3.3.0",
     "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.3",
     "url-loader": "0.5.9",
     "webpack": "2.6.1",
     "webpack-dev-server": "2.5.0",
     "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
