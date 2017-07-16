@@ -1,6 +1,7 @@
 // import { initialize } from '../actions'
 import PropTypes from 'prop-types'
-
+import UserWishList from './UserWishList'
+import Wish from './Wish'
 var React = require('react');
 // var Wish = require('./Wish.js');
 // var CreateWish = require('./CreateWish.js');
@@ -187,12 +188,11 @@ class Overview extends React.Component {
   //   //   return that.state.selectedFaces[wish.for] != undefined;
   //   // });
   // }
-  // getWishesForUser (name) {
-  //   var wishes = this.getFilteredWishes();
-  //   return wishes.filter(function(wish) {
-  //     return wish.for === name;
-  //   });
-  // }
+  getWishesForUser (name) {
+    return this.props.wishes.filter(function(wish) {
+      return wish.for === name;
+    });
+  }
   // removeWishFromState (id) {
   //   var wishes = this.state.allWishes.filter(function(wish) {
   //     return id !== wish._id;
@@ -519,14 +519,17 @@ class Overview extends React.Component {
   //   );
   // }
   render () {
+    const wishlists = this.props.allUsers.map((user) => {
+      const wishes = this.getWishesForUser(user.name)
+      return <UserWishList
+          user={user}
+          key={user.name}>
+            {wishes.map(function (w) {return <Wish key={w._id} user={user} {...w}/>})}
+          </UserWishList>
+    })
     return (<div>
-
-      <div>Here we go! {this.props.user ? this.props.user.name : 'noone'} is here and wishes for</div>
-      <ul>
-        {this.props.wishes.map((w, i) => {
-          return (<li key={"key" + i}>About {w.text}</li>)})}
-
-      </ul>
+      <div>USERS:</div>
+      {wishlists}
   </div>)
   //
   //   if (!this.state.user) {

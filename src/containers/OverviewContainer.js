@@ -1,11 +1,20 @@
 import { connect } from 'react-redux'
 import Overview from '../components/Overview';
 
+const getVisibleWishLists = (users, filter) => {
+  if (filter.user != 'ALL') {
+    users = users.filter(u => {
+      return u.name == filter
+    })
+  }
+  return users
+}
+
 const mapStateToProps = state => {
   return {
     wishes: state.wishes,
     user: state.users.user,
-    allUsers: state.users.allUsers
+    allUsers: getVisibleWishLists(state.users.allUsers, state.filter),
   }
 }
 

@@ -4,25 +4,25 @@ var WishNote = require('./WishNote.js');
 var classnames = require('classnames');
 var ReactTooltip = require("react-tooltip")
 
-module.exports = React.createClass({
-  displayName: "Wish",
-  getInitialState: function() {
-    return {
-      editMode: this.props.editMode,
-      grabbedBy: this.props.grabbedBy,
-      text: this.props.text,
-      comment: this.props.comment,
-      price: this.props.price,
-      wishUrl: this.props.url,
-      for: this.props.for,
-      collapsed: this.props.collapsed,
-      priority: this.props.priority
-    };
-  },
-  handleEditButtonClick: function() {
+class Wish extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state =      {
+          editMode: this.props.editMode,
+          grabbedBy: this.props.grabbedBy,
+          text: this.props.text,
+          comment: this.props.comment,
+          price: this.props.price,
+          wishUrl: this.props.url,
+          for: this.props.for,
+          collapsed: this.props.collapsed,
+          priority: this.props.priority
+        };
+  }
+  handleEditButtonClick() {
     this.setState({editMode: true});
-  },
-  handleSave: function() {
+  }
+  handleSave() {
     if (!this.state.text) {
       alert('Bitte gebe einen Titel ein!');
       return false;
@@ -55,11 +55,11 @@ module.exports = React.createClass({
     this.setState({
       editMode: false
     });
-  },
-  reset: function() {
+  }
+  reset() {
     this.setState(this.getInitialState());
-  },
-  getButtons: function() {
+  }
+  getButtons() {
     let buttons,
       isAdmin = this.props.user.isAdmin,
       deleteLink = (<div className="delete" onClick={this.props.onDeleteWish}>löschen</div>),
@@ -191,19 +191,19 @@ module.exports = React.createClass({
       {canEdit ? buttonEdit : ''}
       </div>
     );
-  },
-  onFormChange: function(event) {
+  }
+  onFormChange(event) {
     this.setState({
       [event.target.id]: event.target.value
     });
-  },
-  handleCollapsedClick: function() {
+  }
+  handleCollapsedClick() {
     this.setState({collapsed: false});
-  },
-  hasChippedIn: function(user) {
+  }
+  hasChippedIn(user) {
     return this.props.chippedIn != undefined && this.props.chippedIn[user] === true;
-  },
-  getChippedIn: function() {
+  }
+  getChippedIn() {
     if (this.props.user.name === this.props.for) {
       return false;
     }
@@ -222,8 +222,8 @@ module.exports = React.createClass({
         })}
       </div>
   )
-  },
-  getViewContent: function() {
+  }
+  getViewContent() {
     let urlHost = false, addedAt = false, priority = false, archivedText, archivedAt;
 
     if (this.state.wishUrl) {
@@ -283,8 +283,8 @@ module.exports = React.createClass({
         </div>
       </div>
     );
-  },
-  getEditContent: function() {
+  }
+  getEditContent() {
     return (
       <div>
         <div className="formSection">
@@ -313,8 +313,8 @@ module.exports = React.createClass({
         </div>
       </div>
     );
-  },
-  render: function() {
+  }
+  render() {
     var classes = {
       wish: true,
       edit: this.state.editMode,
@@ -355,4 +355,6 @@ module.exports = React.createClass({
       </div>
     )
   }
-});
+}
+
+export default Wish

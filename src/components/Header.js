@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import UserList from './UserList'
 // var classnames = require('classnames');
 // var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var ReactTooltip = require("react-tooltip")
 // var Button = require('./Button.js');
 
-const Header = ({user}) => (
+const Header = ({user, allUsers}) => (
       <div className='header'>
         <div className="containerLeft">
           <div className="logo">
             Superspecial Wishlist 2.0
           </div>
           <div className="filterContainer">
+            <UserList allUsers={allUsers}/>
             {/* <div className="btn-toolbar" role="toolbar">
               <Button
                 key='button_filter_all'
@@ -52,18 +54,7 @@ const Header = ({user}) => (
             <img className="profileImage" alt="" src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'}></img>
             <div className="title">Hallo {user.name}!</div>
           </div>
-          {/* <div className="nav">
-              {users.map(function(user) {
-                var classes = {
-                  navListItem: true,
-                  active: selectedUser === user.name,
-                  inactive: selectedUser && selectedUser != user.name
-                }
 
-                return <img key={'h_img_' + user.name} data-tip={user.name} className={classnames(classes)} src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'} onClick={that.props.onFaceClick.bind(null, user.name)}></img>
-              })}
-              {selectedUser ? <div className={classnames("navListItem allUsersButton", {hidden: selectedUser === null})} onClick={that.props.onFaceClick.bind(null, null)}>Alle</div> : ''}
-          </div> */}
         </div>
         <ReactTooltip place="top" type="info" effect="solid"/>
         <div className="clearfix"></div>

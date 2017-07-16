@@ -1,19 +1,17 @@
-var React = require('react');
-var Linkify = require('react-linkify').default;
+import PropTypes from 'prop-types'
+import React from 'react';
+var Linkify = require('react-linkify').default
 
-module.exports = React.createClass({
-  displayName: "Announcement",
-  render: function() {
-    if (!this.props.announcement) {
-      return null;
-    }
+const Announcement = (props) => (
+  <div className="announcement">
+    <Linkify properties={{target: '_blank'}}>
+      {props.children}
+    </Linkify>
+  </div>
+)
 
-  return (
-    <div className="announcement">
-      <Linkify properties={{target: '_blank'}}>
-        {this.props.announcement}
-      </Linkify>
-    </div>
-  );
-  }
-});
+Announcement.propTypes = {
+  announcement: PropTypes.string
+}
+
+export default Announcement
