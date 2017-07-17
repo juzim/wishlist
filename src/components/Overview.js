@@ -110,7 +110,7 @@ class Overview extends React.Component {
   //     // }.bind(this),
   //     // error: function(xhr, status, err) {
   //     //   console.error(this.props.url, status, err.toString());
-  //     //   if (xhr.status == 401) {
+  //     //   if (xhr.status === 401) {
   //     //     location.reload();
   //     //   } else {
   //     //     that.showErrorNotification(data.error, 'Ein Fehler ist aufgetreten')
@@ -121,7 +121,7 @@ class Overview extends React.Component {
   // handleScrollToId (name) {
   //   // var target = $('#anc_' + name);
   //   //
-  //   // if (target.offset() == undefined) {
+  //   // if (target.offset() === undefined) {
   //   //   return;
   //   // }
   //   //
@@ -132,13 +132,13 @@ class Overview extends React.Component {
   // getOwnWishes () {
   //   var currentUser = this.state.user.name, archiveActive = this.state.filter === 'archived';
   //   return this.state.allWishes.filter(function(wish) {
-  //     if (wish.for != currentUser || wish.addedBy != currentUser) {
+  //     if (wish.for !== currentUser || wish.addedBy !== currentUser) {
   //       return false;
   //     };
   //
   //     return (archiveActive && wish.archivedAt) || (!archiveActive && !wish.archivedAt);
   //     // if (this.state.filter === 'archived') {
-  //     //   return wish.archivedAt != undefined;
+  //     //   return wish.archivedAt !== undefined;
   //     // } else {
   //     //   return !wish.archivedAt;
   //     // }
@@ -172,11 +172,11 @@ class Overview extends React.Component {
   //     })
   //   } else if (activeFilter === 'archived') {
   //     filteredWishes = wishes.filter(function(wish) {
-  //       return wish.archivedAt != undefined;
+  //       return wish.archivedAt !== undefined;
   //     })
   //   }
   //
-  //   if (activeFilter != 'archived') {
+  //   if (activeFilter !== 'archived') {
   //     filteredWishes = filteredWishes.filter(function(wish) {
   //       return !wish.archivedAt;
   //     })
@@ -185,7 +185,7 @@ class Overview extends React.Component {
   //   return filteredWishes;
   //
   //   // filteredWishes.filter(function(wish) {
-  //   //   return that.state.selectedFaces[wish.for] != undefined;
+  //   //   return that.state.selectedFaces[wish.for] !== undefined;
   //   // });
   // }
   getWishesForUser (name) {
@@ -359,7 +359,7 @@ class Overview extends React.Component {
   //   );
   // }
   // handleAnnouncementSubmit  (text) {
-  //   if (text == this.state.user.announcement) {
+  //   if (text === this.state.user.announcement) {
   //     return;
   //   }
   //   this.updateUser({
@@ -367,7 +367,7 @@ class Overview extends React.Component {
   //   });
   // }
   // getOwnWishesSection () {
-  //   // if (this.state.selectedUser || this.state.filter != 'all') {
+  //   // if (this.state.selectedUser || this.state.filter !== 'all') {
   //   //   return false;
   //   // } disbled because nav button doesn't do shit when this is not visible
   //
@@ -403,24 +403,24 @@ class Overview extends React.Component {
   // getListSection () {
   //   let that=this,
   //   user = this.state.user,
-  //   otherUsers = this.state.allUsers.filter(function(oneUser) {return oneUser.name != user.name}),
+  //   otherUsers = this.state.allUsers.filter(function(oneUser) {return oneUser.name !== user.name}),
   //   currentFilter = this.state.filter;
   //
   //   return (
   //     <div className="lists">
   //       {otherUsers.map(function(otherUser) {
-  //         if (that.state.selectedUser && that.state.selectedUser != otherUser.name) {
+  //         if (that.state.selectedUser && that.state.selectedUser !== otherUser.name) {
   //           return false;
   //         }
   //
   //         var wishes = that.getWishesForUser(otherUser.name);
   //
   //         wishes.sort(function(a, b) {
-  //           if ('grabbedBy' in a && a.grabbedBy && a.grabbedBy != user.name) {
+  //           if ('grabbedBy' in a && a.grabbedBy && a.grabbedBy !== user.name) {
   //             return 1;
   //           }
   //
-  //           if ('grabbedBy' in b && b.grabbedBy && b.grabbedBy != user.name) {
+  //           if ('grabbedBy' in b && b.grabbedBy && b.grabbedBy !== user.name) {
   //             return -1;
   //           }
   //
@@ -444,10 +444,10 @@ class Overview extends React.Component {
   //             <div className="wishes">
   //               <ReactCSSTransitionGroup transitionName="wish" transitionEnterTimeout={500} transitionLeaveTimeout={1000} >
   //                 {wishes.map(function(wish) {
-  //                   const collapsed = user.name != wish.grabbedBy
-  //                         && user.name != wish.for
-  //                         && wish.grabbedBy != undefined
-  //                         && (currentFilter != 'archived');
+  //                   const collapsed = user.name !== wish.grabbedBy
+  //                         && user.name !== wish.for
+  //                         && wish.grabbedBy !== undefined
+  //                         && (currentFilter !== 'archived');
   //
   //                   return (
   //                     <Wish
@@ -475,7 +475,7 @@ class Overview extends React.Component {
   // getHeader () {
   //   var user = this.state.user,
   //   otherUsers = this.state.allUsers.filter(function(oneUser) {
-  //     return oneUser.name != user.name
+  //     return oneUser.name !== user.name
   //   }),
   //   grabbedWishes = this.state.allWishes.filter(function(wish) {
   //     return user.name === wish.grabbedBy && !wish.archivedAt;
@@ -527,10 +527,10 @@ class Overview extends React.Component {
             {wishes.map(function (w) {return <Wish key={w._id} user={user} {...w}/>})}
           </UserWishList>
     })
-    return (<div>
-      <div>USERS:</div>
-      {wishlists}
-  </div>)
+    return (
+      <div>
+        {wishlists}
+      </div>)
   //
   //   if (!this.state.user) {
   //     return <div>Loading…</div>;
@@ -540,7 +540,7 @@ class Overview extends React.Component {
   //   grabbedWishes = this.state.allWishes.filter(function(wish) {
   //     return user.name === wish.grabbedBy && !wish.archivedAt;
   //   }),
-  //   otherUsers = this.state.allUsers.filter(function(oneUser) {return oneUser.name != user.name}),
+  //   otherUsers = this.state.allUsers.filter(function(oneUser) {return oneUser.name !== user.name}),
   //   contentClasses = {
   //     content: true,
   //     loading: this.state.loading

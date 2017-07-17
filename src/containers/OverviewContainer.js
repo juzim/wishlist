@@ -2,9 +2,10 @@ import { connect } from 'react-redux'
 import Overview from '../components/Overview';
 
 const getVisibleWishLists = (users, filter) => {
-  if (filter.user != 'ALL') {
+  console.log(filter)
+  if (filter.user !== 'ALL') {
     users = users.filter(u => {
-      return u.name == filter
+      return u.name === filter.user
     })
   }
   return users

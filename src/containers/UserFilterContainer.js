@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
-import UserImage from '../components/UserImage'
+import UserFilter from '../components/UserFilter'
 import { filterUser } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     user: ownProps.user,
+    selected: state.filter.user === ownProps.user.name,
+    inactive: state.filter.user !== 'ALL' && state.filter.user !== ownProps.user.name
   }
 }
 
@@ -19,6 +21,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const UserFilterContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserImage)
+)(UserFilter)
 
 export default UserFilterContainer

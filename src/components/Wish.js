@@ -1,6 +1,6 @@
+import Button from './Button'
+import WishNote from './WishNote'
 var React = require('react');
-var Button = require('./Button.js');
-var WishNote = require('./WishNote.js');
 var classnames = require('classnames');
 var ReactTooltip = require("react-tooltip")
 
@@ -62,7 +62,6 @@ class Wish extends React.Component {
   getButtons() {
     let buttons,
       isAdmin = this.props.user.isAdmin,
-      deleteLink = (<div className="delete" onClick={this.props.onDeleteWish}>löschen</div>),
       canEdit = isAdmin || this.props.user.name === this.props.addedBy,
       isOwnWish = this.props.user.name === this.props.for,
       grabbedByUser = this.props.grabbedBy === this.props.user.name,
@@ -201,7 +200,7 @@ class Wish extends React.Component {
     this.setState({collapsed: false});
   }
   hasChippedIn(user) {
-    return this.props.chippedIn != undefined && this.props.chippedIn[user] === true;
+    return this.props.chippedIn !== undefined && this.props.chippedIn[user] === true;
   }
   getChippedIn() {
     if (this.props.user.name === this.props.for) {
@@ -218,7 +217,7 @@ class Wish extends React.Component {
     return (
       <div>
         {chippedIn.map(function(user) {
-          return <img key={'h_img_' + user} data-tip={user} className="chippedIn" src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'}></img>
+          return <img alt="" key={'h_img_' + user} data-tip={user} className="chippedIn" src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'}></img>
         })}
       </div>
   )
@@ -242,15 +241,17 @@ class Wish extends React.Component {
 
     const prioMapping = {
       1: {'icon': "🡅", 'text': "Wichtig!"},
+      2: {'icon': "", 'text': ""},
       3: {'icon': "🡇", 'text': "Nicht so wichtig…"},
     }
+    console.log(this.props.priority)
 
-    if (this.props.priority && this.props.priority != 2) {
+    if (this.props.priority && this.props.priority !== 2) {
       const prioClasses = {
         "priority": true,
         "fl": true,
-        "high": this.props.priority == 1,
-        "low": this.props.priority == 3,
+        "high": this.props.priority === 1,
+        "low": this.props.priority === 3,
       };
 
       priority = (<span className={classnames(prioClasses)} data-tip={prioMapping[this.props.priority]['text']}>{prioMapping[this.props.priority]['icon']}</span>);
@@ -279,7 +280,7 @@ class Wish extends React.Component {
         {this.state.price ? <div>Kostet: {this.state.price}</div> : ''}
         <div className="fields">
           {this.state.wishUrl ? <div className="field url"><a href={this.state.wishUrl} target="_blank">{urlHost}</a></div> : ''}
-          <WishNote comment={this.state.comment}/>
+          <WishNote comment={this.state.comment} />
         </div>
       </div>
     );

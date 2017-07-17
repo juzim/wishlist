@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import UserList from './UserList'
+import UserImage from '../components/UserImage'
+
 // var classnames = require('classnames');
 // var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var ReactTooltip = require("react-tooltip")
@@ -19,26 +21,26 @@ const Header = ({user, allUsers}) => (
                 key='button_filter_all'
                 onClick={that.onSelectFilter.bind(null, 'all')}
                 text='Alle'
-                type={activeFilter == 'all' ? 'info' : "text"}
+                type={activeFilter === 'all' ? 'info' : "text"}
               />
               <Button
                 key='button_filter_grabbable'
                 onClick={that.onSelectFilter.bind(null, 'grabbable')}
                 text='Frei'
-                type={activeFilter == 'grabbable' ? 'info' : "text"}
+                type={activeFilter === 'grabbable' ? 'info' : "text"}
               />
               <Button
                 key='button_filter_grabbedByMe'
                 onClick={that.onSelectFilter.bind(null, 'grabbedByMe')}
                 text='Von mir geschnappt'
-                type={activeFilter == 'grabbedByMe' ? 'info' : "text"}
+                type={activeFilter === 'grabbedByMe' ? 'info' : "text"}
               />
 
               <Button
                 key='button_filter_archived'
                 onClick={this.onSelectFilter.bind(null, 'archived')}
                 text='Archiv'
-                type={activeFilter == 'archived' ? 'info' : "text"}
+                type={activeFilter === 'archived' ? 'info' : "text"}
               />
             </div> */}
           </div>
@@ -51,7 +53,7 @@ const Header = ({user, allUsers}) => (
 
           </div> */}
           <div className="profile">
-            <img className="profileImage" alt="" src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'}></img>
+            <UserImage user={user} />
             <div className="title">Hallo {user.name}!</div>
           </div>
 

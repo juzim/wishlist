@@ -117,7 +117,7 @@ h1 {
       margin: 0;
       height: 40px;
       width: 40px; }
-  .nav .navListItem {
+  .nav .navListItem .profileImage {
     background-color: #fff;
     display: inline-block;
     height: 30px;
@@ -131,14 +131,11 @@ h1 {
     text-align: center;
     font-size: 24px;
     line-height: 30px; }
-    .nav .navListItem.active, .nav .navListItem:hover {
-      margin: 0 2px;
-      height: 40px;
-      width: 40px;
+    .nav .navListItem.selected, .nav .navListItem:hover {
+      /*margin: 0 2px;*/
+      height: 40px !important;
+      width: 40px !important;
       line-height: 40px; }
-    .nav .navListItem.active {
-      pointer-events: none;
-      cursor: none; }
     .nav .navListItem.inactive {
       -webkit-filter: grayscale(100%);
       filter: grayscale(100%); }

@@ -1,9 +1,8 @@
 var React = require('react');
 var Linkify = require('react-linkify').default;
 
-module.exports = React.createClass({
-  displayName: "WishNote",
-  render: function() {
+class WishNote extends React.Component {
+  render() {
     if (!this.props.comment) {
       return null;
     }
@@ -14,4 +13,6 @@ module.exports = React.createClass({
       </div>
     );
   }
-});
+}
+
+export default WishNote

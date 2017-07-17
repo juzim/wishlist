@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react';
 import Announcement from './Announcement'
+import UserImage from './UserImage'
 
 const UserInfo = (props) => (
   <div className="profile">
-    <img className="profileImage" alt='' src={props.user.imageUrl ? "images/user/" + props.user.imageUrl : 'images/default-profile.png'}></img>
+    <UserImage user={props.user} />
     <div className="nameBox">
       <div className="name">{props.user.name}</div>
       <div>

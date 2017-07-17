@@ -45,7 +45,7 @@ module.exports = React.createClass({
                 {wish.url ? <span className="field url">Online kaufen: <a href={wish.url} target="_blank">{urlHost}</a></span> : ''}
                 <div>
                   <span className="field addedBy">Für: {wish.for}</span>
-                  {wish.addedBy != wish.for ? <span className="field addedBy"> &middot; Hinzugefügt von: {wish.addedBy}</span>  : ''}
+                  {wish.addedBy !== wish.for ? <span className="field addedBy"> &middot; Hinzugefügt von: {wish.addedBy}</span>  : ''}
                 </div>
               </div>
             )

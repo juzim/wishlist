@@ -1,17 +1,23 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import classnames from 'classnames'
 
-const UserImage = ({user, onClick}) => (
-  <img
-    alt={user.name}
-    data-tip={user.name}
-    src={user.imageUrl ? "images/user/" + user.imageUrl : 'images/default-profile.png'}
-    onClick={e => {
-      e.preventDefault()
-      onClick()
-    }}>
-    </img>
-)
+const UserImage = (props) => {
+  const classes = {
+    profileImage: true
+  },
+  basePath = "http://localhost:3001/images/",
+  user = props.user;
+
+  return (
+    <img
+      className={classnames(classes)}
+      alt={user.name}
+      data-tip={user.name}
+      src={basePath + (user.imageUrl ? "user/" + user.imageUrl : 'images/default-profile.png')}
+    />
+  )
+}
 
 UserImage.propTypes = {
   user: PropTypes.shape({
