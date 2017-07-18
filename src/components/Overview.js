@@ -2,7 +2,8 @@
 import PropTypes from 'prop-types'
 import UserWishList from './UserWishList'
 import Wish from './Wish'
-var React = require('react');
+import CreateWishContainer from '../containers/CreateWishContainer'
+import React from 'react'
 // var Wish = require('./Wish.js');
 // var CreateWish = require('./CreateWish.js');
 // var ShoppingList = require('./ShoppingList.js');
@@ -16,108 +17,6 @@ var React = require('react');
 // var Announcement = require('./Announcement.js');
 
 class Overview extends React.Component {
-  // this.state = {
-  //     user: null,
-  //     allWishes: [],
-  //     allUsers: [],
-  //     loading: true,
-  //     filter: 'all',
-  //     showShoppingList: false,
-  //     selectedUser: null,
-  //     showArchived: false
-  //   };
-  // }
-
-  //   var url = window.location.href;
-  //
-  //   window.history.pushState({}, document.title, url.split("?")[0]);
-  //
-  //   let that = this;
-  //   that.setState({
-  //   //           user: {name: 'Foo'},
-  //   // //           // allUsers: data.allUsers,
-  //   // //           // allWishes: data.wishes,
-  //   // //           // filteredWishes: data.wishes,
-  //   // //           // ownWishes: data.ownWishes
-  //   // //         });
-  //     })
-  //
-  //   fetch('http://localhost:3001/api/lists', {
-  //     method: 'GET',
-  //     mode: 'cors',
-  //     headers:{
-  //       'Access-Control-Allow-Origin':'*'
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       console.log(responseJson);
-  //
-  //           that.setState({
-  //             user: responseJson.user,
-  //             allUsers: responseJson.allUsers,
-  //             allWishes: responseJson.wishes,
-  //             filteredWishes: responseJson.wishes,
-  //             ownWishes: responseJson.ownWishes
-  //           });
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-
-    // this.doAjaxCall(
-    //   'localhost:3001/api/lists/',
-    //   'GET',
-    //   {},
-    //   function(data) {
-    //     that.setState({
-    //       user: data.user,
-    //       allUsers: data.allUsers,
-    //       allWishes: data.wishes,
-    //       filteredWishes: data.wishes,
-    //       ownWishes: data.ownWishes
-    //     });
-    //   }
-    // );
-  // }
-  // componentDidUpdate () {
-  //   if (this.state.selectedUser) {
-  //     this.handleScrollToId(this.state.selectedUser);
-  //   }
-  // }
-  // doAjaxCall (url, method, data, callback) {
-  //   var that = this;
-  //
-  //   // this.setState({
-  //   //   loading: true
-  //   // });
-  //
-  //   fetch(url, {
-  //     data: data,
-  //     method: method,
-  //     dataType: 'json',
-  //     cache: false
-  //     // success: function(data) {
-  //     //   if (data.success) {
-  //     //     callback(data);
-  //     //   } else {
-  //     //     that.showErrorNotification(data.error, 'Ein Fehler ist aufgetreten')
-  //     //   }
-  //     //
-  //     //   that.setState({
-  //     //     loading: false
-  //     //   });
-  //     // }.bind(this),
-  //     // error: function(xhr, status, err) {
-  //     //   console.error(this.props.url, status, err.toString());
-  //     //   if (xhr.status === 401) {
-  //     //     location.reload();
-  //     //   } else {
-  //     //     that.showErrorNotification(data.error, 'Ein Fehler ist aufgetreten')
-  //     //   }
-  //     // }.bind(this)
-  //   });
-  // }
   // handleScrollToId (name) {
   //   // var target = $('#anc_' + name);
   //   //
@@ -143,11 +42,6 @@ class Overview extends React.Component {
   //     //   return !wish.archivedAt;
   //     // }
   //   });
-  // }
-  // handleSelectFilter (filter) {
-  //   this.setState({
-  //     filter: filter
-  //   })
   // }
   // getFilteredWishes () {
   //   var that = this, wishes = [], activeFilter = this.state.filter, filteredWishes;
@@ -400,102 +294,6 @@ class Overview extends React.Component {
   //   </div>
   //   )
   // }
-  // getListSection () {
-  //   let that=this,
-  //   user = this.state.user,
-  //   otherUsers = this.state.allUsers.filter(function(oneUser) {return oneUser.name !== user.name}),
-  //   currentFilter = this.state.filter;
-  //
-  //   return (
-  //     <div className="lists">
-  //       {otherUsers.map(function(otherUser) {
-  //         if (that.state.selectedUser && that.state.selectedUser !== otherUser.name) {
-  //           return false;
-  //         }
-  //
-  //         var wishes = that.getWishesForUser(otherUser.name);
-  //
-  //         wishes.sort(function(a, b) {
-  //           if ('grabbedBy' in a && a.grabbedBy && a.grabbedBy !== user.name) {
-  //             return 1;
-  //           }
-  //
-  //           if ('grabbedBy' in b && b.grabbedBy && b.grabbedBy !== user.name) {
-  //             return -1;
-  //           }
-  //
-  //           return 0;
-  //         })
-  //
-  //         if (wishes.length === 0 && that.state.filter !== 'all') {
-  //           return false;
-  //         }
-  //
-  //         return (
-  //           <div key={'list_' + otherUser.name} className='wishlist'>
-  //             <div className="profile">
-  //               <img className="profileImage" src={otherUser.imageUrl ? "images/user/" + otherUser.imageUrl : 'images/default-profile.png'}></img>
-  //               <div className="nameBox">
-  //                 <div className="name">{otherUser.name}</div>
-  //                 <Announcement announcement={otherUser.announcement} />
-  //               </div>
-  //               <div className="anchor" id={'anc_' + otherUser.name}></div>
-  //             </div>
-  //             <div className="wishes">
-  //               <ReactCSSTransitionGroup transitionName="wish" transitionEnterTimeout={500} transitionLeaveTimeout={1000} >
-  //                 {wishes.map(function(wish) {
-  //                   const collapsed = user.name !== wish.grabbedBy
-  //                         && user.name !== wish.for
-  //                         && wish.grabbedBy !== undefined
-  //                         && (currentFilter !== 'archived');
-  //
-  //                   return (
-  //                     <Wish
-  //                         {...wish}
-  //                         key={wish._id}
-  //                         user={user}
-  //                         onDeleteWish={that.handleDeleteWish.bind(null, wish._id)}
-  //                         onArchiveWish={that.handleArchiveWish.bind(null, wish._id)}
-  //                         onGrabWish={that.handleGrabWish.bind(null, wish._id)}
-  //                         onCreateWish={that.handleUpdateWish}
-  //                         onChipIn={that.handleChipIn.bind(null, wish._id, 'in')}
-  //                         onChipOut={that.handleChipIn.bind(null, wish._id, 'out')}
-  //                         collapsed={collapsed}
-  //                     />
-  //                   )
-  //                 })}
-  //               </ReactCSSTransitionGroup>
-  //             </div>
-  //           </div>
-  //         )
-  //       })}
-  //     </div>
-  //   );
-  // }
-  // getHeader () {
-  //   var user = this.state.user,
-  //   otherUsers = this.state.allUsers.filter(function(oneUser) {
-  //     return oneUser.name !== user.name
-  //   }),
-  //   grabbedWishes = this.state.allWishes.filter(function(wish) {
-  //     return user.name === wish.grabbedBy && !wish.archivedAt;
-  //   });
-  //
-  //   return (
-  //     <Header
-  //       key='header'
-  //       user={user}
-  //       users={otherUsers}
-  //       activeFilter={this.state.filter}
-  //       grabbedWishesCount={grabbedWishes.length}
-  //       onSelectFilter={this.handleSelectFilter}
-  //       onFaceClick={this.handleFaceClick}
-  //       onNavClick={this.handleScrollToId}
-  //       onShowShoppingList={this.handleShowShoppingList}
-  //       selectedUser = {this.state.selectedUser}
-  //       />
-  //   );
-  // }
   // showSuccessNotification (content, title = '') {
   //   this.refs.container.success(
   //     content,
@@ -518,17 +316,24 @@ class Overview extends React.Component {
   //     }
   //   );
   // }
+
   render () {
     const wishlists = this.props.allUsers.map((user) => {
       const wishes = this.getWishesForUser(user.name)
       return <UserWishList
           user={user}
           key={user.name}>
-            {wishes.map(function (w) {return <Wish key={w._id} user={user} {...w}/>})}
+            {wishes.map(function (w) {
+              // @todo get key from wish after testing!!!
+              return <Wish key={w.text} user={user} {...w}/>})
+            }
           </UserWishList>
     })
+
     return (
       <div>
+        {/* <CreateWish  title="foo" onSubmit={this.submit}/> */}
+        <CreateWishContainer />
         {wishlists}
       </div>)
   //

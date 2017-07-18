@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import Header from '../components/Header'
-import { filterUser } from '../actions'
 
 const mapStateToProps = state => {
   return {
@@ -10,11 +9,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onUserClick: () => {
-      dispatch(filterUser())
-    }
-  }
+  return {}
 }
 
 const HeaderContainer = connect(

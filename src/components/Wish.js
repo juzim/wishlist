@@ -244,8 +244,7 @@ class Wish extends React.Component {
       2: {'icon': "", 'text': ""},
       3: {'icon': "🡇", 'text': "Nicht so wichtig…"},
     }
-    console.log(this.props.priority)
-
+    
     if (this.props.priority && this.props.priority !== 2) {
       const prioClasses = {
         "priority": true,

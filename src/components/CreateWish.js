@@ -1,114 +1,81 @@
-var React = require('react');
-var Button = require('./Button.js');
+import { Field, reduxForm } from 'redux-form'
+import PropTypes from 'prop-types'
+import Button from './Button'
+import React from 'react'
 
-module.exports = React.createClass({
-  displayName: "CreateWish",
-  getInitialState: function() {
-    return {
-      grabbedBy: null,
-      text: null,
-      comment: "",
-      price: null,
-      wishUrl: null,
-      for: "",
-      priority: 2
-    };
-  },
-  reset: function() {
-    this.setState(this.getInitialState());
-  },
-  onFormChange: function(event) {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  },
-  handleSave: function(e) {
-    e.preventDefault();
+let CreateWish = ({ handleSubmit, reset, userNames, currentUser }) => {
+  const handleReset = () => {
+    reset('createWish')
+  }
 
-    if (!this.state.text) {
-      alert('Bitte gebe einen Titel ein!');
-      return false;
-    }
-
-    if (this.state.for === "") {
-      alert('Bitte wähle einen Beschenkten aus!');
-      return false;
-    }
-
-    var url = this.state.wishUrl;
-
-    if (url && !/^https?:\/\//i.test(url)) {
-      url = 'http://' + url;
-    }
-
-    var formData = {
-      text: this.state.text,
-      comment: this.state.comment,
-      price: this.state.price,
-      url: url,
-      for: this.state.for,
-      priority: this.state.priority
-    };
-
-    this.props.onCreateWish(formData);
-
-    this.reset();
-  },
-  render: function() {
-    return (
-        <div className='wish create well'>
-          <div className="buttonContainer">
-            <Button
-              text='Speichern'
-              type='info'
-              onClick={this.handleSave}
-            />
-            <Button
-              text='Abbrechen'
-              type='text'
-              onClick={this.reset}
-            />
-          </div>
-          <div className="formSection">
-            <label htmlFor="for">Für</label>
-            <select id="for" onChange={this.onFormChange} required value={this.state.for}>
-              <option value="">--</option>
-              <option value={this.props.user.name}>Mich</option>
-              {this.props.users.map(function(user) {
-                return (
-                  <option key={'c_o_' + user.name}>{user.name}</option>
-                )
-              })}
-            </select>
-            <div className="editPrice" >
-              <label htmlFor="price">Preis</label>
-              <input id="price" type="text" onChange={this.onFormChange} value={this.state.price}/>
-            </div>
-          </div>
-          <div className="formSection">
-            <label htmlFor="title">Titel</label>
-            <input type="text" id="text" onChange={this.onFormChange} required value={this.state.text}/>
+  return (
+      <div className='wish create well'>
+          <form onSubmit={ handleSubmit }>
+          <div className="editPrice">
+            <label htmlFor="price">Preis</label>
+            <Field name="price" component="input"/>
           </div>
           <div className="wishContent">
-              <div className="formSection">
-                <label htmlFor="url">Link</label>
-                <input id="wishUrl" type="url" onChange={this.onFormChange} value={this.state.wishUrl}/>
-              </div>
-              <div className="formSection">
-                <label htmlFor="comment">Infos</label>
-                <textarea id="comment" className="comment" type="text" onChange={this.onFormChange} value={this.state.comment}></textarea>
-              </div>
-              <div className="formSection">
-                <label htmlFor="priority">Priorität</label>
-                <select value={this.state.priority} onChange={this.onFormChange} id="priority">
-                  <option value="2">-</option>
-                  <option value="1">Wichtig</option>
-                  <option value="3">Nicht wichtig</option>
-                </select>
-              </div>
-            </div>
-          <div className="clearfix"></div>
-        </div>
-    )
-  }
-});
+          <div className="formSection">
+            <label htmlFor="text">Titel</label>
+            <Field name="text" component="input" type="text" required/>
+          </div>
+          <div className="formSection">
+            <label htmlFor="url">Link</label>
+            <Field name="url" component="input" type="text"/>
+          </div>
+
+          <div className="formSection">
+            <label htmlFor="for">Für</label>
+            <Field name="for" component="select" required>
+              <option />
+              {userNames.map(u => {return <option key={u} value={u}>
+                {currentUser === u ? "mich" : u}
+              </option>})}
+            </Field>
+          </div>
+          <div className="formSection">
+            <label htmlFor="priority">Priorität</label>
+            <Field name="priority" component="select">
+              <option />
+              <option value="1">Wichtig</option>
+              <option value="3">Nicht wichtig</option>
+            </Field>
+          </div>
+          <div className="formSection">
+            <label htmlFor="comment">Infos</label>
+            <Field
+              component="input"
+              name="comment"
+              className="comment"
+              type="text"
+            />
+          </div>
+          <Button
+            text='Speichern'
+            type='submit'
+          />
+          <Button
+            text='Abbrechen'
+            onClick={handleReset}
+          />
+          </div>
+          </form>
+
+        <div className="clearfix"></div>
+      </div>
+  )
+}
+
+CreateWish.propTypes = {
+  onSubmit: PropTypes.func,
+  values: PropTypes.shape({
+    title: PropTypes.string
+  })
+}
+
+CreateWish = reduxForm({
+  form: 'createWish'
+})(CreateWish)
+
+export default CreateWish;

@@ -38,22 +38,22 @@ class Button extends React.Component {
   render() {
     var classes = {
       'btn': true,
-      'btn-info': this.props.type === 'info',
-      'btn-success': this.props.type === 'success',
-      'btn-danger': this.props.type === 'danger',
-      'btn-warning': this.props.type === 'warning',
-      'btn-default': this.props.type === 'plain',
-      'btn-link': this.props.type === 'text',
+      'btn-info': this.props.format === 'info',
+      'btn-success': this.props.format === 'success',
+      'btn-danger': this.props.format === 'danger',
+      'btn-warning': this.props.format === 'warning',
+      'btn-default': this.props.format === 'plain',
+      'btn-link': this.props.format === 'text',
       'disabled': this.state.disabled
     };
 
     return (
       <button
-        type="button"
+        type={this.props.type ? this.props.type : "button"}
         className={classnames(classes, this.props.classes)}
-        onClick={this.onClick}
         onMouseOver={this.onMouseOver.bind(this)}
         onMouseOut={this.onMouseOut.bind(this)}
+        onClick={this.props.onClick ? this.props.onClick : null}
         >
         <span>{this.state.text}</span>
       </button>
