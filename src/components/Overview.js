@@ -1,7 +1,7 @@
 // import { initialize } from '../actions'
 import PropTypes from 'prop-types'
 import UserWishList from './UserWishList'
-import Wish from './Wish'
+import WishContainer from '../containers/WishContainer'
 import CreateWishContainer from '../containers/CreateWishContainer'
 import React from 'react'
 // var Wish = require('./Wish.js');
@@ -325,7 +325,7 @@ class Overview extends React.Component {
           key={user.name}>
             {wishes.map(function (w) {
               // @todo get key from wish after testing!!!
-              return <Wish key={w.text} user={user} {...w}/>})
+              return <WishContainer key={w.text} user={user} wish={w}/>})
             }
           </UserWishList>
     })

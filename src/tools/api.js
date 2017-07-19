@@ -39,3 +39,22 @@ export const postData = (endpoint, data, success) => {
       console.log('parsing failed', ex)
     })
 }
+
+export const sendDelete = (type, id, success) => {
+  var headers = new Headers();
+
+  // headers.append('Content-Type', 'application/json');
+  let sentData={
+      method: "delete",
+      headers: headers,
+      body: JSON.stringify({id: id})
+  };
+  fetch('http://localhost:3001/api/' + type + '/' + id, sentData)
+    .then(response => {
+      return response.json()
+    }).then(json => {
+      success(id)
+    }).catch(ex => {
+      console.log('parsing failed', ex)
+    })
+}

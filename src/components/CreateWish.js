@@ -4,10 +4,6 @@ import Button from './Button'
 import React from 'react'
 
 let CreateWish = ({ handleSubmit, reset, userNames, currentUser }) => {
-  const handleReset = () => {
-    reset('createWish')
-  }
-
   return (
       <div className='wish create well'>
           <form onSubmit={ handleSubmit }>
@@ -57,7 +53,9 @@ let CreateWish = ({ handleSubmit, reset, userNames, currentUser }) => {
           />
           <Button
             text='Abbrechen'
-            onClick={handleReset}
+            onClick={() => {
+              reset('createWish')
+            }}
           />
           </div>
           </form>
