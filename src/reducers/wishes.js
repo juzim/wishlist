@@ -6,27 +6,32 @@ function addItem(array, item) {
     return newArray;
 }
 
-const wishes = (state = {wishes: [], isCreating: false}, action) => {
+const wishes = (state = {wishes: [], isCreating: false, isLoading: {}}, action) => {
   switch (action.type) {
     case CREATE_WISH:
-      return state.merge({
+      return {
+        ...state,
         isCreating: true
-      })
+      }
     case CREATE_WISH_SUCCESS:
       return {
         ...state,
-        isCreating: true,
+        isCreating: false,
         wishes: addItem(state.wishes, action.wish)
     }
 
     case DELETE_WISH:
-      return state.merge({
-        isCreating: true
-      })
-    case DELETE_WISH_SUCCESS:
+      console.log('del')
+      let loadings = Object.assign({}, state.isLoading)
+      loadings[action.id] = true
       return {
         ...state,
-        isCreating: true,
+        isLoading: loadings
+      }
+    case DELETE_WISH_SUCCESS:
+    console.log('suc')
+      return {
+        ...state,
         wishes: state.wishes.filter(w => w._id !== action.id)
     }
     default:

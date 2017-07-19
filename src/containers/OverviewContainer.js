@@ -15,6 +15,7 @@ const mapStateToProps = state => {
     wishes: state.wishes.wishes,
     user: state.users.user,
     allUsers: getVisibleWishLists(state.users.allUsers, state.filter),
+    isLoading: state.wishes.isLoading
   }
 }
 

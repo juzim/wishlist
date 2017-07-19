@@ -2,10 +2,17 @@ import { Field, reduxForm } from 'redux-form'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import React from 'react'
+import classnames from 'classnames';
 
-let CreateWish = ({ handleSubmit, reset, userNames, currentUser }) => {
+let CreateWish = ({ handleSubmit, reset, userNames, currentUser, isCreating }) => {
+  let classes = {
+    wish:true,
+    create: true,
+    well: true,
+    disabled: isCreating
+  }
   return (
-      <div className='wish create well'>
+      <div className={classnames(classes)}>
           <form onSubmit={ handleSubmit }>
           <div className="editPrice">
             <label htmlFor="price">Preis</label>

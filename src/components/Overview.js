@@ -318,6 +318,8 @@ class Overview extends React.Component {
   // }
 
   render () {
+    const isLoading = this.props.isLoading
+    console.log(isLoading)
     const wishlists = this.props.allUsers.map((user) => {
       const wishes = this.getWishesForUser(user.name)
       return <UserWishList
@@ -325,11 +327,16 @@ class Overview extends React.Component {
           key={user.name}>
             {wishes.map(function (w) {
               // @todo get key from wish after testing!!!
-              return <WishContainer key={w.text} user={user} wish={w}/>})
+              return <WishContainer
+                key={w.text}
+                user={user}
+                wish={w}
+                isLoading={isLoading[w._id] === true}
+
+              />})
             }
           </UserWishList>
     })
-
     return (
       <div>
         {/* <CreateWish  title="foo" onSubmit={this.submit}/> */}
@@ -396,8 +403,9 @@ Overview.propTypes = {
   wishes: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string
-    }).isRequired
+    }).isRequired,
   ).isRequired,
+  isLoading: PropTypes.shape(),
   users: PropTypes.shape({
     user: PropTypes.shape({
       name: PropTypes.string

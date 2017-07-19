@@ -2,7 +2,8 @@ import { connect } from 'react-redux'
 import Wish from '../components/Wish'
 import {deleteWish} from '../actions/wish'
 const mapStateToProps = (state) => {
-  return {}
+  return {
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

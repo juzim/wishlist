@@ -16,7 +16,8 @@ let onSuccess = (data) => {
     },
     wishes: {
       wishes: data.wishes || [],
-      isCreating: false
+      isCreating: false,
+      isLoading: {}
     }
   }
   const store = configureStore(result);

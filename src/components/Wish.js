@@ -5,7 +5,7 @@ var React = require('react');
 var classnames = require('classnames');
 var ReactTooltip = require("react-tooltip")
 
-const Wish = ({handleDelete, wish, user, foo}) => {
+const Wish = ({handleDelete, wish, user, isLoading}) => {
   // handleEditButtonClick() {
   //   this.setState({editMode: true});
   // }
@@ -249,9 +249,9 @@ const Wish = ({handleDelete, wish, user, foo}) => {
       );
     }
 
-
     var classes = {
       wish: true,
+      disabled: isLoading
       // edit: this.state.editMode,
       // loading: this.state.loading
     }

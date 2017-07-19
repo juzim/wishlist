@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
   return {
     wish: {},
     userNames: state.users.allUsers.map((u) => {return u.name}),
-    currentUser: state.users.user.name
+    currentUser: state.users.user.name,
+    isCreating: state.wishes.isCreating
   }
 }
 

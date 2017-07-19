@@ -5,9 +5,18 @@ export const DELETE_WISH = 'DELETE_WISH'
 export const DELETE_WISH_SUCCESS = 'DELETE_WISH_SUCCESS'
 
 export const createWish = values => {
-  return dispatch => postData("wish", values, function(persistedWish) {
-      dispatch(persistWishSuccess(persistedWish))
-    })
+  return dispatch =>{
+      dispatch(createWishInit())
+      postData("wish", values, function(persistedWish) {
+        dispatch(persistWishSuccess(persistedWish))
+      })
+  }
+}
+
+export function createWishInit() {
+  return {
+    type: CREATE_WISH
+  }
 }
 
 export function persistWishSuccess(wish) {
@@ -18,9 +27,20 @@ export function persistWishSuccess(wish) {
 }
 
 export const deleteWish = id => {
-  return dispatch => sendDelete("wish", id, function() {
-      dispatch(deleteWishSuccess(id))
-    })
+  return dispatch =>
+    {
+      dispatch(deleteWishInit(id))
+      sendDelete("wish", id, function() {
+        dispatch(deleteWishSuccess(id))
+      })
+  }
+}
+
+export function deleteWishInit(id) {
+  return {
+    type: DELETE_WISH,
+    id: id
+  }
 }
 
 export function deleteWishSuccess(id) {
