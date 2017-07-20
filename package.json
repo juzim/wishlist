@@ -52,14 +52,39 @@
     "webpack": "2.6.1",
     "webpack-dev-server": "2.5.0",
     "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "body-parser": "^1.14.1",
+    "classnames": "^2.2.0",
+    "config": "^1.26.1",
+    "cookie": "^0.2.3",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-brute": "^0.6.0",
+    "express-session": "^1.12.1",
+    "l": "0.0.1",
+    "long-timeout": "0.0.2",
+    "mongoose": "^4.2.4",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "session-file-store": "0.0.22"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "server-dev": "export NODE_ENV=dev; export NODE_CONFIG_DIR=./server/config; node ./server/bin/www",
+    "server-prod": "export NODE_ENV=production; export NODE_CONFIG_DIR=./server/config; node ./server/bin/www"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babelify": "^7.3.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
+    "history": "^1.13.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
