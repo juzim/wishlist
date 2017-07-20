@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import classnames from 'classnames'
-import UserImage from '../components/UserImage'
+import UserImage from './UserImage'
 
 const UserFilter = ({user, selected, inactive, onClick}) => {
   const classes = {

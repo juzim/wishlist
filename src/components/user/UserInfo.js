@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react';
-import Announcement from './Announcement'
+import UserAnnouncement from './UserAnnouncement'
 import UserImage from './UserImage'
 
 const UserInfo = (props) => (
@@ -9,7 +9,7 @@ const UserInfo = (props) => (
     <div className="nameBox">
       <div className="name">{props.user.name}</div>
       <div>
-        <Announcement>{props.user.announcement}</Announcement>
+        {props.user.announcement !== undefined ? <UserAnnouncement>{props.user.announcement}</UserAnnouncement> : null}
       </div>
     </div>
     <div className="anchor" id={'anc_' + props.user.name}></div>

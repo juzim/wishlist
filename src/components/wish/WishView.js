@@ -9,10 +9,12 @@ var ReactTooltip = require("react-tooltip")
 const WishView = ({handleDelete, handleEdit, wish, user, buttons}) => {
     let urlHost = false, archivedText;
 
+
+
+
     return (
         <div>
             <div className="buttonContainer btn-group-vertical" role="group">
-              {buttons}
               <Button
                 onClick={() => {handleDelete(wish.id)}}
                 text="löschen"

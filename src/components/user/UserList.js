@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import UserFilterContainer from '../containers/UserFilterContainer'
+import UserFilterContainer from '../../containers/user/UserFilterContainer'
 
 const UserList = (props) => (
   <div className="nav">

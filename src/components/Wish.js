@@ -11,16 +11,18 @@ class Wish extends React.Component {
       wish: true,
       disabled: this.props.isLoading
     }
+    const user = this.props.user, wish = this.props.wish
 
     const content = this.props.isEditing ?
       <WishEditContainer
-        initialValues={this.props.wish}
-        form={'editwish_' + this.props.wish._id}
-        id={this.props.wish._id}
+        initialValues={wish}
+        form={'editwish_' + wish._id}
+        id={wish._id}
       /> :
         <WishViewContainer
-          wish={this.props.wish}
-          user={this.props.user}
+          wish={wish}
+          user={user}
+          canEdit={wish.addedBy === user.name || user.isAdmin}
       />
 
     return (

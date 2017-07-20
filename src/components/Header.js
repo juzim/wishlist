@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import UserList from './UserList'
-import UserImage from '../components/UserImage'
+import UserList from './user/UserList'
+import UserImage from '../components/user/UserImage'
 
 // var classnames = require('classnames');
 // var ReactCSSTransitionGroup = require('react-addons-css-transition-group');

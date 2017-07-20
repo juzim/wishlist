@@ -1,6 +1,6 @@
 // import { initialize } from '../actions'
 import PropTypes from 'prop-types'
-import UserWishList from './UserWishList'
+import UserWishList from './user/UserWishList'
 import WishContainer from '../containers/WishContainer'
 import CreateWishContainer from '../containers/CreateWishContainer'
 import React from 'react'
@@ -13,7 +13,7 @@ import React from 'react'
 // var {ToastContainer} = ReactToastr;
 // var ToastMessageFactory = React.createFactory(ReactToastr.ToastMessage.animation);
 // var Button = require('./Button.js');
-// var UserAnnouncement = require('./UserAnnouncement.js');
+// var UserAnnouncement = require('./user/UserAnnouncement.js');
 // var Announcement = require('./Announcement.js');
 
 class Overview extends React.Component {
