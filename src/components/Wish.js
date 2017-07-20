@@ -6,21 +6,6 @@ import classnames from 'classnames';
 import React from 'react'
 
 class Wish extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     mode: 'view'
-  //   }
-  //   this.toggleMode = this.toggleMode.bind(this);
-  //
-  // }
-  //
-  // toggleMode() {
-  //   this.setState(() => {
-  //     return {mode: this.state.mode === 'view' ? 'edit' : 'view'}
-  //   })
-  // }
-
   render() {
     var classes = {
       wish: true,
@@ -30,7 +15,6 @@ class Wish extends React.Component {
     const content = this.props.isEditing ?
       <WishEditContainer
         initialValues={this.props.wish}
-        cancelEdit={this.toggleMode}
         form={'editwish_' + this.props.wish._id}
         id={this.props.wish._id}
       /> :

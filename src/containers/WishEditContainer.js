@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import WishEdit from '../components/wish/WishEdit'
 import { updateWish, editWishCancel } from '../actions/wish'
-// import { reset } from 'redux-form';
+import { reset } from 'redux-form';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,9 +14,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onSubmit: (values) => {
-      dispatch(updateWish(values, ownProps.id))
+      if (values !== ownProps.initialValues) {
+        dispatch(updateWish(values, ownProps.id))
+      } else {
+        dispatch(editWishCancel(ownProps.id))
+      }
     },
     onCancel: () => {
+      reset('editwish_' + ownProps.id)
       dispatch(editWishCancel(ownProps.id))
     }
   }

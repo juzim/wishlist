@@ -17,7 +17,6 @@ let onSuccess = (data) => {
     wishes: {
       isCreating: false,
       wishes: data.wishes.sort(function(w1,w2) {
-        console.log(w1.text, w2.text)
         return w1.text > w2.text
       }) || [],
       isLoading: {},
