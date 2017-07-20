@@ -1,16 +1,23 @@
 import { connect } from 'react-redux'
 import Wish from '../components/Wish'
-import {deleteWish} from '../actions/wish'
-const mapStateToProps = (state) => {
+
+const mapStateToProps = (state, ownProps) => {
+  const isLoading = state.wishes.isLoading,
+  isEditing = state.wishes.isEditing
+
+
   return {
+    isLoading: isLoading[ownProps.wish._id] === true,
+    isEditing: isEditing[ownProps.wish._id] === true
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleDelete: () => {
-      dispatch(deleteWish(ownProps.wish._id))
-    }
+
+    // onEditCancel: () => {
+    //   dispatch(editWishCancel(ownProps.id))
+    // }
   }
 }
 

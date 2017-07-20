@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import UserInfo from './UserInfo'
 
 const UserWishList = (props) => (
@@ -8,9 +7,7 @@ const UserWishList = (props) => (
     <UserInfo user={props.user}/>
     {props.info}
     <div className="wishes">
-      <ReactCSSTransitionGroup transitionName="wish" transitionEnterTimeout={500} transitionLeaveTimeout={1000} >
         {props.children}
-      </ReactCSSTransitionGroup>
     </div>
   </div>
 )

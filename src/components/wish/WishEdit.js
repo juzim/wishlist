@@ -1,21 +1,16 @@
 import { Field, reduxForm } from 'redux-form'
 import PropTypes from 'prop-types'
-import Button from './Button'
+import Button from '../Button'
 import React from 'react'
-import classnames from 'classnames';
 
-let CreateWish = ({ handleSubmit, reset, userNames, currentUser, isCreating }) => {
-  let classes = {
-    wish:true,
-    create: true,
-    well: true,
-    disabled: isCreating
-  }
+let WishEdit = ({ wish, handleSubmit, reset, onCancel, currentUser, userNames, buttons }) => {
+  // let classes = {
+  //   wish:true,
+  // }
   return (
-      <div className={classnames(classes)}>
+      <div>
           <form onSubmit={ handleSubmit }>
             <div className="buttonContainer btn-group-vertical" role="group">
-
             <Button
               text='Speichern'
               type='submit'
@@ -23,7 +18,8 @@ let CreateWish = ({ handleSubmit, reset, userNames, currentUser, isCreating }) =
             <Button
               text='Abbrechen'
               onClick={() => {
-                reset('createWish')
+                // reset('updateWish')
+                onCancel()
               }}
             />
             </div>
@@ -76,15 +72,13 @@ let CreateWish = ({ handleSubmit, reset, userNames, currentUser, isCreating }) =
   )
 }
 
-CreateWish.propTypes = {
+WishEdit.propTypes = {
   onSubmit: PropTypes.func,
   values: PropTypes.shape({
     title: PropTypes.string
   })
 }
 
-CreateWish = reduxForm({
-  form: 'createWish'
-})(CreateWish)
+WishEdit = reduxForm({})(WishEdit)
 
-export default CreateWish;
+export default WishEdit;

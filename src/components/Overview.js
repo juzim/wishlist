@@ -318,8 +318,7 @@ class Overview extends React.Component {
   // }
 
   render () {
-    const isLoading = this.props.isLoading
-    console.log(isLoading)
+    const currentUser = this.props.currentUser
     const wishlists = this.props.allUsers.map((user) => {
       const wishes = this.getWishesForUser(user.name)
       return <UserWishList
@@ -329,10 +328,8 @@ class Overview extends React.Component {
               // @todo get key from wish after testing!!!
               return <WishContainer
                 key={w.text}
-                user={user}
                 wish={w}
-                isLoading={isLoading[w._id] === true}
-
+                user={currentUser}
               />})
             }
           </UserWishList>

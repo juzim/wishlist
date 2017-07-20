@@ -15,9 +15,13 @@ let onSuccess = (data) => {
       allUsers: data.allUsers || []
     },
     wishes: {
-      wishes: data.wishes || [],
       isCreating: false,
-      isLoading: {}
+      wishes: data.wishes.sort(function(w1,w2) {
+        console.log(w1.text, w2.text)
+        return w1.text > w2.text
+      }) || [],
+      isLoading: {},
+      isEditing: {}
     }
   }
   const store = configureStore(result);

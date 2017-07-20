@@ -12,10 +12,9 @@ const getVisibleWishLists = (users, filter) => {
 
 const mapStateToProps = state => {
   return {
-    wishes: state.wishes.wishes,
-    user: state.users.user,
-    allUsers: getVisibleWishLists(state.users.allUsers, state.filter),
-    isLoading: state.wishes.isLoading
+    wishes: state.wishes.wishes.sort((w1, w2) => {return w1.text > w2.text}),
+    currentUser: state.users.user,
+    allUsers: getVisibleWishLists(state.users.allUsers, state.filter)
   }
 }
 
